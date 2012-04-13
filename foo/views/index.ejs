@@ -1,0 +1,38 @@
+<!-- TODO: UI cosmetic refinement, using widget -->
+<style type="text/css">
+table { margin: 1em; border-collapse: collapse; }
+</style>
+
+<h1 align="center">TODO List</h1>
+
+<form method="post" action="create">
+ <table border="1" width=100%>
+  <caption><font size="+2">Create a task</font></caption>
+  <tr>
+    <td width="40%">
+     task: <input type="text" name="name" value="sample" size=60%" />
+    </td>
+    <td width="40%">
+<!--  TODO : calander chooser -->
+     due date: <input type="text" name="date" value="01/12/2012"  size="60%" />
+    </td>
+    <td width="20%" align="center">
+     <input type="submit" value="Create" />
+    </td>
+  </tr>
+ </table>
+</form>
+
+<table border="1" width=100%>
+  <caption><font size="+2">Pending tasks</font></caption>
+    <% for (var i = 0; i < pendings.length; i++) { %>
+      <tr><td width="80%"><%= pendings[i].name %></td><td width="20%"  align="center"><form method="post" action="done"><input type="submit" value="Done" /><input type="hidden"  name="index" value="<%= pendings[i]._id %>" /></form></td></tr>
+    <% } %>
+</table>
+
+<table border="1" width=100%>
+  <caption><font size="+2">Done tasks</font></caption>
+    <% for (var i = 0; i < dones.length; i++) { %>
+      <tr><td width="80%"><%= dones[i].name %></td><td width="20%"  align="center"><form method="post" action="delete"><input type="submit" value="Delete" /><input type="hidden"  name="index" value="<%= dones[i]._id %>" /></form></td></tr>
+    <% } %>
+</table>
